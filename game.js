@@ -129,18 +129,12 @@ function Game () {
 
                 var winner = didPlayerWin();
                 
-                currentPlayer += 1;
-                if(currentPlayer == players.length){
-                    currentPlayer = 0;
-                }
+                siguienteTurno();
 
                 return winner;
             }
             else {
-                currentPlayer += 1;
-                if(currentPlayer == players.length) {
-                    currentPlayer = 0;
-                }
+                siguienteTurno();
                 return true;
             }
         }
@@ -151,10 +145,7 @@ function Game () {
 
             var winner = didPlayerWin();
 
-            currentPlayer += 1;
-            if(currentPlayer == players.length){
-                currentPlayer = 0;
-            }
+            siguienteTurno();
 
             return winner;
         }
@@ -163,6 +154,14 @@ function Game () {
     function ganarMoneda() {
         purses[currentPlayer] += 1;
         console.log(players[currentPlayer] + " now has " + purses[currentPlayer]  + " Gold Coins.");
+    }
+    
+    function siguienteTurno() {
+        currentPlayer += 1;
+        
+        if(currentPlayer == players.length) {
+            currentPlayer = 0;
+        }   
     }
 
   this.wrongAnswer = function(){
