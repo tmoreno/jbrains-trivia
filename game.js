@@ -1,15 +1,15 @@
 var Tablero = require('./tablero');
 var Jugador = require('./jugador');
 
-function Game () {
-    var players          = new Array();
-
-    var currentPlayerIndex    = 0;
+function Game() {
+    var players = new Array();
+    var currentPlayerIndex = 0;
+    
     var isGettingOutOfPenaltyBox = false;
     
     var tablero = new Tablero(['Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock']);
 
-    var didPlayerWin = function(){
+    var didPlayerWin = function() {
         var currentPlayer = players[currentPlayerIndex];
         
         return !(currentPlayer.getPurses() == 6);
@@ -49,7 +49,6 @@ function Game () {
         
         players.push(jugador);
         
-
         console.log(jugador.getNombre() + " was added");
         console.log("They are player number " + players.length);
 
