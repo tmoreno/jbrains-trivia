@@ -122,11 +122,8 @@ function Game () {
 
     this.wasCorrectlyAnswered = function() {
         if(inPenaltyBox[currentPlayer] && !isGettingOutOfPenaltyBox){
-
-
-                siguienteTurno();
-                return true;
-            
+            siguienteTurno();
+            return true;
         }
         else {
             console.log("Answer was correct!!!!");
@@ -153,17 +150,17 @@ function Game () {
             currentPlayer = 0;
         }   
     }
-
-  this.wrongAnswer = function(){
-		console.log('Question was incorrectly answered');
+    
+    this.wrongAnswer = function() {
+        console.log('Question was incorrectly answered');
 		console.log(players[currentPlayer] + " was sent to the penalty box");
+        
 		inPenaltyBox[currentPlayer] = true;
 
-    currentPlayer += 1;
-    if(currentPlayer == players.length)
-      currentPlayer = 0;
+        siguienteTurno();
+        
 		return true;
-  };
+    };
 };
 
 module.exports = Game;
