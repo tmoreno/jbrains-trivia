@@ -6,17 +6,17 @@ function Game () {
     var purses           = new Array(6);
     var inPenaltyBox     = new Array(6);
 
-    var currentPlayer    = 0;
+    var currentPlayerIndex    = 0;
     var isGettingOutOfPenaltyBox = false;
     
     var tablero = new Tablero(['Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock']);
 
     var didPlayerWin = function(){
-        return !(purses[currentPlayer] == 6)
+        return !(purses[currentPlayerIndex] == 6)
     };
 
     var currentCategory = function() {
-        return tablero.currentCategory([places[currentPlayer]]);
+        return tablero.currentCategory([places[currentPlayerIndex]]);
     };
     
     questions = {
@@ -67,13 +67,15 @@ function Game () {
     };
 
     this.roll = function(roll) {
-        console.log(players[currentPlayer] + " is the current player");
+        var currentPlayer = players[currentPlayerIndex];
+        
+        console.log(currentPlayer + " is the current player");
         console.log("They have rolled a " + roll);
 
-        if (inPenaltyBox[currentPlayer]) {
+        if (inPenaltyBox[currentPlayerIndex]) {
             if (esImpar(roll)) {
                 isGettingOutOfPenaltyBox = true;
-                console.log(players[currentPlayer] + " is getting out of the penalty box");
+                console.log(currentPlayer + " is getting out of the penalty box");
                 
                 avanzar(roll);
                 
@@ -81,7 +83,7 @@ function Game () {
                 askQuestion();
             }
             else {
-                console.log(players[currentPlayer] + " is not getting out of the penalty box");
+                console.log(currentPlayer + " is not getting out of the penalty box");
                 isGettingOutOfPenaltyBox = false;
             }
         }
@@ -98,17 +100,19 @@ function Game () {
     }
     
     function avanzar(roll) {
-        places[currentPlayer] = places[currentPlayer] + roll;
+        var currentPlayer = players[currentPlayerIndex];
         
-        if(places[currentPlayer] > 11) {
-            places[currentPlayer] = places[currentPlayer] - 12;
+        places[currentPlayerIndex] = places[currentPlayerIndex] + roll;
+        
+        if(places[currentPlayerIndex] > 11) {
+            places[currentPlayerIndex] = places[currentPlayerIndex] - 12;
         }
         
-        console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
+        console.log(currentPlayer + "'s new location is " + places[currentPlayerIndex]);
     }
 
     this.wasCorrectlyAnswered = function() {
-        if(inPenaltyBox[currentPlayer] && !isGettingOutOfPenaltyBox){
+        if(inPenaltyBox[currentPlayerIndex] && !isGettingOutOfPenaltyBox){
             siguienteTurno();
             return true;
         }
@@ -126,10 +130,12 @@ function Game () {
     };
     
     this.wrongAnswer = function() {
-        console.log('Question was incorrectly answered');
-		console.log(players[currentPlayer] + " was sent to the penalty box");
+        var currentPlayer = players[currentPlayerIndex];
         
-		inPenaltyBox[currentPlayer] = true;
+        console.log('Question was incorrectly answered');
+		console.log(currentPlayer + " was sent to the penalty box");
+        
+		inPenaltyBox[currentPlayerIndex] = true;
 
         siguienteTurno();
         
@@ -137,15 +143,17 @@ function Game () {
     };
     
     function ganarMoneda() {
-        purses[currentPlayer] += 1;
-        console.log(players[currentPlayer] + " now has " + purses[currentPlayer]  + " Gold Coins.");
+        var currentPlayer = players[currentPlayerIndex];
+        
+        purses[currentPlayerIndex] += 1;
+        console.log(currentPlayer + " now has " + purses[currentPlayerIndex]  + " Gold Coins.");
     }
     
     function siguienteTurno() {
-        currentPlayer += 1;
+        currentPlayerIndex += 1;
         
-        if(currentPlayer == players.length) {
-            currentPlayer = 0;
+        if(currentPlayerIndex == players.length) {
+            currentPlayerIndex = 0;
         }   
     }
 };
