@@ -138,6 +138,17 @@ function Game () {
         }
     };
     
+    this.wrongAnswer = function() {
+        console.log('Question was incorrectly answered');
+		console.log(players[currentPlayer] + " was sent to the penalty box");
+        
+		inPenaltyBox[currentPlayer] = true;
+
+        siguienteTurno();
+        
+		return true;
+    };
+    
     function ganarMoneda() {
         purses[currentPlayer] += 1;
         console.log(players[currentPlayer] + " now has " + purses[currentPlayer]  + " Gold Coins.");
@@ -150,17 +161,6 @@ function Game () {
             currentPlayer = 0;
         }   
     }
-    
-    this.wrongAnswer = function() {
-        console.log('Question was incorrectly answered');
-		console.log(players[currentPlayer] + " was sent to the penalty box");
-        
-		inPenaltyBox[currentPlayer] = true;
-
-        siguienteTurno();
-        
-		return true;
-    };
 };
 
 module.exports = Game;
