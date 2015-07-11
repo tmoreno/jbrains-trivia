@@ -1,4 +1,4 @@
-exports = typeof window !== "undefined" && window !== null ? window : global;
+var Tablero = require('./tablero');
 
 function Game () {
   var players          = new Array();
@@ -14,14 +14,14 @@ function Game () {
   var currentPlayer    = 0;
   var isGettingOutOfPenaltyBox = false;
     
-    var tablero = ['Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock'];
+    var tablero = new Tablero(['Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock']);
 
   var didPlayerWin = function(){
     return !(purses[currentPlayer] == 6)
   };
 
   var currentCategory = function() {
-      return tablero[places[currentPlayer]];
+      return tablero.currentCategory([places[currentPlayer]]);
   };
 
   for(var i = 0; i < 50; i++){
