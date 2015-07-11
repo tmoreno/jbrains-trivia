@@ -3,7 +3,6 @@ var Jugador = require('./jugador');
 
 function Game () {
     var players          = new Array();
-    var purses           = new Array(6);
     var inPenaltyBox     = new Array(6);
 
     var currentPlayerIndex    = 0;
@@ -12,7 +11,9 @@ function Game () {
     var tablero = new Tablero(['Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock']);
 
     var didPlayerWin = function(){
-        return !(purses[currentPlayerIndex] == 6)
+        var currentPlayer = players[currentPlayerIndex];
+        
+        return !(currentPlayer.getPurses() == 6);
     };
 
     var currentCategory = function() {
@@ -49,7 +50,6 @@ function Game () {
         
         players.push(jugador);
         
-        purses[this.howManyPlayers() - 1] = 0;
         inPenaltyBox[this.howManyPlayers() - 1] = false;
 
         console.log(jugador.getNombre() + " was added");
@@ -149,8 +149,8 @@ function Game () {
     function ganarMoneda() {
         var currentPlayer = players[currentPlayerIndex];
         
-        purses[currentPlayerIndex] += 1;
-        console.log(currentPlayer.getNombre() + " now has " + purses[currentPlayerIndex]  + " Gold Coins.");
+        currentPlayer.addPurse();
+        console.log(currentPlayer.getNombre() + " now has " + currentPlayer.getPurses() + " Gold Coins.");
     }
     
     function siguienteTurno() {
