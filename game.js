@@ -1,4 +1,5 @@
 var Tablero = require('./tablero');
+var Jugador = require('./jugador');
 
 function Game () {
     var players          = new Array();
@@ -43,12 +44,15 @@ function Game () {
     };
 
     this.add = function(playerName) {
-        players.push(playerName);
+        var jugador = new Jugador(playerName);
+        
+        players.push(jugador);
+        
         places[this.howManyPlayers() - 1] = 0;
         purses[this.howManyPlayers() - 1] = 0;
         inPenaltyBox[this.howManyPlayers() - 1] = false;
 
-        console.log(playerName + " was added");
+        console.log(jugador.getNombre() + " was added");
         console.log("They are player number " + players.length);
 
         return true;
@@ -69,13 +73,13 @@ function Game () {
     this.roll = function(roll) {
         var currentPlayer = players[currentPlayerIndex];
         
-        console.log(currentPlayer + " is the current player");
+        console.log(currentPlayer.getNombre() + " is the current player");
         console.log("They have rolled a " + roll);
 
         if (inPenaltyBox[currentPlayerIndex]) {
             if (esImpar(roll)) {
                 isGettingOutOfPenaltyBox = true;
-                console.log(currentPlayer + " is getting out of the penalty box");
+                console.log(currentPlayer.getNombre() + " is getting out of the penalty box");
                 
                 avanzar(roll);
                 
@@ -83,7 +87,7 @@ function Game () {
                 askQuestion();
             }
             else {
-                console.log(currentPlayer + " is not getting out of the penalty box");
+                console.log(currentPlayer.getNombre() + " is not getting out of the penalty box");
                 isGettingOutOfPenaltyBox = false;
             }
         }
@@ -108,7 +112,7 @@ function Game () {
             places[currentPlayerIndex] = places[currentPlayerIndex] - 12;
         }
         
-        console.log(currentPlayer + "'s new location is " + places[currentPlayerIndex]);
+        console.log(currentPlayer.getNombre() + "'s new location is " + places[currentPlayerIndex]);
     }
 
     this.wasCorrectlyAnswered = function() {
@@ -133,7 +137,7 @@ function Game () {
         var currentPlayer = players[currentPlayerIndex];
         
         console.log('Question was incorrectly answered');
-		console.log(currentPlayer + " was sent to the penalty box");
+		console.log(currentPlayer.getNombre() + " was sent to the penalty box");
         
 		inPenaltyBox[currentPlayerIndex] = true;
 
@@ -146,7 +150,7 @@ function Game () {
         var currentPlayer = players[currentPlayerIndex];
         
         purses[currentPlayerIndex] += 1;
-        console.log(currentPlayer + " now has " + purses[currentPlayerIndex]  + " Gold Coins.");
+        console.log(currentPlayer.getNombre() + " now has " + purses[currentPlayerIndex]  + " Gold Coins.");
     }
     
     function siguienteTurno() {
