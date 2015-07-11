@@ -89,7 +89,7 @@ function Game () {
                 console.log(players[currentPlayer] + " is getting out of the penalty box");
                 
                 avanzar(roll);
-                console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
+                
                 console.log("The category is " + currentCategory());
                 askQuestion();
             }
@@ -100,7 +100,7 @@ function Game () {
         }
         else {
             avanzar(roll);
-            console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
+
             console.log("The category is " + currentCategory());
             askQuestion();
         }
@@ -115,7 +115,9 @@ function Game () {
         
         if(places[currentPlayer] > 11) {
             places[currentPlayer] = places[currentPlayer] - 12;
-        }   
+        }
+        
+        console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
     }
 
   this.wasCorrectlyAnswered = function(){
