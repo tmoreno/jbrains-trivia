@@ -1,4 +1,7 @@
 {
   "name": "jbrains-trivia",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "dependencies": {
+    "random-seed": "^0.2.0"
+  }
 }
