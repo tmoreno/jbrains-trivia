@@ -6,11 +6,6 @@ function Game () {
   var purses           = new Array(6);
   var inPenaltyBox     = new Array(6);
 
-  var popQuestions     = new Array();
-  var scienceQuestions = new Array();
-  var sportsQuestions  = new Array();
-  var rockQuestions    = new Array();
-
   var currentPlayer    = 0;
   var isGettingOutOfPenaltyBox = false;
     
@@ -23,13 +18,25 @@ function Game () {
   var currentCategory = function() {
       return tablero.currentCategory([places[currentPlayer]]);
   };
-
-  for(var i = 0; i < 50; i++){
-    popQuestions.push("Pop Question "+i);
-    scienceQuestions.push("Science Question "+i);
-    sportsQuestions.push("Sports Question "+i);
-    rockQuestions.push("Rock Question "+i);
-  };
+    
+    questions = {
+        Pop: {
+            text: 'Pop Question',
+            number: 50
+        },
+        Science: {
+            text: 'Science Question',
+            number: 50
+        },
+        Sports: {
+            text: 'Sports Question',
+            number: 50
+        },
+        Rock: {
+            text: 'Rock Question',
+            number: 50
+        }
+    };
 
   this.isPlayable = function(howManyPlayers){
     return howManyPlayers >= 2;
@@ -51,17 +58,13 @@ function Game () {
     return players.length;
   };
 
-
-  var askQuestion = function(){
-    if(currentCategory() == 'Pop')
-      console.log(popQuestions.shift());
-    if(currentCategory() == 'Science')
-      console.log(scienceQuestions.shift());
-    if(currentCategory() == 'Sports')
-      console.log(sportsQuestions.shift());
-    if(currentCategory() == 'Rock')
-      console.log(rockQuestions.shift());
-  };
+    var askQuestion = function(){
+        var question = questions[currentCategory()];
+      
+        console.log(question.text + ' ' + (50 - question.number));
+        
+        question.number--;
+    };
 
     this.roll = function(roll) {
         console.log(players[currentPlayer] + " is the current player");
