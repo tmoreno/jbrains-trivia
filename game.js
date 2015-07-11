@@ -120,46 +120,45 @@ function Game () {
         console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
     }
 
-  this.wasCorrectlyAnswered = function(){
-    if(inPenaltyBox[currentPlayer]){
-      if(isGettingOutOfPenaltyBox){
-        console.log('Answer was correct!!!!');
-        purses[currentPlayer] += 1;
-        console.log(players[currentPlayer] + " now has " +
-                    purses[currentPlayer]  + " Gold Coins.");
+    this.wasCorrectlyAnswered = function() {
+        if(inPenaltyBox[currentPlayer]){
+            if(isGettingOutOfPenaltyBox){
+                console.log('Answer was correct!!!!');
+                purses[currentPlayer] += 1;
+                console.log(players[currentPlayer] + " now has " + purses[currentPlayer]  + " Gold Coins.");
 
-        var winner = didPlayerWin();
-        currentPlayer += 1;
-        if(currentPlayer == players.length)
-          currentPlayer = 0;
+                var winner = didPlayerWin();
+                currentPlayer += 1;
+                if(currentPlayer == players.length){
+                    currentPlayer = 0;
+                }
 
-        return winner;
-      }else{
-        currentPlayer += 1;
-        if(currentPlayer == players.length)
-          currentPlayer = 0;
-        return true;
-      }
+                return winner;
+            }
+            else {
+                currentPlayer += 1;
+                if(currentPlayer == players.length) {
+                    currentPlayer = 0;
+                }
+                return true;
+            }
+        }
+        else {
+            console.log("Answer was correct!!!!");
 
+            purses[currentPlayer] += 1;
+            console.log(players[currentPlayer] + " now has " + purses[currentPlayer]  + " Gold Coins.");
 
+            var winner = didPlayerWin();
 
-    }else{
+            currentPlayer += 1;
+            if(currentPlayer == players.length){
+                currentPlayer = 0;
+            }
 
-      console.log("Answer was correct!!!!");
-
-      purses[currentPlayer] += 1;
-      console.log(players[currentPlayer] + " now has " +
-                  purses[currentPlayer]  + " Gold Coins.");
-
-      var winner = didPlayerWin();
-
-      currentPlayer += 1;
-      if(currentPlayer == players.length)
-        currentPlayer = 0;
-
-      return winner;
-    }
-  };
+            return winner;
+        }
+    };
 
   this.wrongAnswer = function(){
 		console.log('Question was incorrectly answered');
