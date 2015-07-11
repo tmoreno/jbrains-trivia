@@ -84,7 +84,7 @@ function Game () {
     console.log("They have rolled a " + roll);
 
     if(inPenaltyBox[currentPlayer]){
-      if(roll % 2 != 0){
+      if(esImpar(roll)){
         isGettingOutOfPenaltyBox = true;
 
         console.log(players[currentPlayer] + " is getting out of the penalty box");
@@ -112,6 +112,10 @@ function Game () {
       askQuestion();
     }
   };
+    
+    function esImpar(roll) {
+        return roll % 2 != 0;
+    }
 
   this.wasCorrectlyAnswered = function(){
     if(inPenaltyBox[currentPlayer]){
