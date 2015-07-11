@@ -1,23 +1,23 @@
 var Tablero = require('./tablero');
 
 function Game () {
-  var players          = new Array();
-  var places           = new Array(6);
-  var purses           = new Array(6);
-  var inPenaltyBox     = new Array(6);
+    var players          = new Array();
+    var places           = new Array(6);
+    var purses           = new Array(6);
+    var inPenaltyBox     = new Array(6);
 
-  var currentPlayer    = 0;
-  var isGettingOutOfPenaltyBox = false;
+    var currentPlayer    = 0;
+    var isGettingOutOfPenaltyBox = false;
     
     var tablero = new Tablero(['Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock']);
 
-  var didPlayerWin = function(){
-    return !(purses[currentPlayer] == 6)
-  };
+    var didPlayerWin = function(){
+        return !(purses[currentPlayer] == 6)
+    };
 
-  var currentCategory = function() {
-      return tablero.currentCategory([places[currentPlayer]]);
-  };
+    var currentCategory = function() {
+        return tablero.currentCategory([places[currentPlayer]]);
+    };
     
     questions = {
         Pop: {
@@ -38,27 +38,27 @@ function Game () {
         }
     };
 
-  this.isPlayable = function(howManyPlayers){
-    return howManyPlayers >= 2;
-  };
+    this.isPlayable = function(howManyPlayers) {
+        return howManyPlayers >= 2;
+    };
 
-  this.add = function(playerName){
-    players.push(playerName);
-    places[this.howManyPlayers() - 1] = 0;
-    purses[this.howManyPlayers() - 1] = 0;
-    inPenaltyBox[this.howManyPlayers() - 1] = false;
+    this.add = function(playerName) {
+        players.push(playerName);
+        places[this.howManyPlayers() - 1] = 0;
+        purses[this.howManyPlayers() - 1] = 0;
+        inPenaltyBox[this.howManyPlayers() - 1] = false;
 
-    console.log(playerName + " was added");
-    console.log("They are player number " + players.length);
+        console.log(playerName + " was added");
+        console.log("They are player number " + players.length);
 
-    return true;
-  };
+        return true;
+    };
 
-  this.howManyPlayers = function(){
-    return players.length;
-  };
+    this.howManyPlayers = function() {
+        return players.length;
+    };
 
-    var askQuestion = function(){
+    var askQuestion = function() {
         var question = questions[currentCategory()];
       
         console.log(question.text + ' ' + (50 - question.number));
