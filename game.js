@@ -124,10 +124,11 @@ function Game () {
         if(inPenaltyBox[currentPlayer]){
             if(isGettingOutOfPenaltyBox){
                 console.log('Answer was correct!!!!');
-                purses[currentPlayer] += 1;
-                console.log(players[currentPlayer] + " now has " + purses[currentPlayer]  + " Gold Coins.");
+                
+                ganarMoneda();
 
                 var winner = didPlayerWin();
+                
                 currentPlayer += 1;
                 if(currentPlayer == players.length){
                     currentPlayer = 0;
@@ -146,8 +147,7 @@ function Game () {
         else {
             console.log("Answer was correct!!!!");
 
-            purses[currentPlayer] += 1;
-            console.log(players[currentPlayer] + " now has " + purses[currentPlayer]  + " Gold Coins.");
+            ganarMoneda();
 
             var winner = didPlayerWin();
 
@@ -159,6 +159,11 @@ function Game () {
             return winner;
         }
     };
+    
+    function ganarMoneda() {
+        purses[currentPlayer] += 1;
+        console.log(players[currentPlayer] + " now has " + purses[currentPlayer]  + " Gold Coins.");
+    }
 
   this.wrongAnswer = function(){
 		console.log('Question was incorrectly answered');
