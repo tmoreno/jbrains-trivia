@@ -9,12 +9,6 @@ function Game() {
     
     var tablero = new Tablero(['Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock']);
 
-    var didPlayerWin = function() {
-        var currentPlayer = players[currentPlayerIndex];
-        
-        return !(currentPlayer.getPurses() == 6);
-    };
-
     var currentCategory = function() {
         var currentPlayer = players[currentPlayerIndex];
         
@@ -124,7 +118,7 @@ function Game() {
 
             ganarMoneda();
 
-            var winner = didPlayerWin();
+            var winner = currentPlayer.didPlayerWin();
 
             siguienteTurno();
 
