@@ -12,8 +12,8 @@ function Jugador(nombre) {
         return nombre;
     }
     
-    this.setPlace = function (place) {
-        this.place = place;
+    this.setPlace = function (value) {
+        place = value;
     }
     
     this.getPlace = function () {
@@ -28,8 +28,8 @@ function Jugador(nombre) {
         return purses;
     }
     
-    this.setInPenaltyBox = function (inPenaltyBox) {
-        this.inPenaltyBox = inPenaltyBox;
+    this.setInPenaltyBox = function (value) {
+        inPenaltyBox = value;
     }
     
     this.isInPenaltyBox = function () {

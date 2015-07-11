@@ -3,7 +3,6 @@ var Jugador = require('./jugador');
 
 function Game () {
     var players          = new Array();
-    var places           = new Array(6);
     var purses           = new Array(6);
     var inPenaltyBox     = new Array(6);
 
@@ -17,7 +16,9 @@ function Game () {
     };
 
     var currentCategory = function() {
-        return tablero.currentCategory([places[currentPlayerIndex]]);
+        var currentPlayer = players[currentPlayerIndex];
+        
+        return tablero.currentCategory(currentPlayer.getPlace());
     };
     
     questions = {
@@ -48,7 +49,6 @@ function Game () {
         
         players.push(jugador);
         
-        places[this.howManyPlayers() - 1] = 0;
         purses[this.howManyPlayers() - 1] = 0;
         inPenaltyBox[this.howManyPlayers() - 1] = false;
 
@@ -106,13 +106,13 @@ function Game () {
     function avanzar(roll) {
         var currentPlayer = players[currentPlayerIndex];
         
-        places[currentPlayerIndex] = places[currentPlayerIndex] + roll;
+        currentPlayer.setPlace(currentPlayer.getPlace() + roll);
         
-        if(places[currentPlayerIndex] > 11) {
-            places[currentPlayerIndex] = places[currentPlayerIndex] - 12;
+        if(currentPlayer.getPlace() > 11) {
+            currentPlayer.setPlace(currentPlayer.getPlace() - 12);
         }
         
-        console.log(currentPlayer.getNombre() + "'s new location is " + places[currentPlayerIndex]);
+        console.log(currentPlayer.getNombre() + "'s new location is " + currentPlayer.getPlace());
     }
 
     this.wasCorrectlyAnswered = function() {
