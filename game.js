@@ -88,10 +88,7 @@ function Game () {
         isGettingOutOfPenaltyBox = true;
 
         console.log(players[currentPlayer] + " is getting out of the penalty box");
-        places[currentPlayer] = places[currentPlayer] + roll;
-        if(places[currentPlayer] > 11){
-          places[currentPlayer] = places[currentPlayer] - 12;
-        }
+        avanzar(roll);
 
         console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
         console.log("The category is " + currentCategory());
@@ -102,10 +99,7 @@ function Game () {
       }
     }else{
 
-      places[currentPlayer] = places[currentPlayer] + roll;
-      if(places[currentPlayer] > 11){
-        places[currentPlayer] = places[currentPlayer] - 12;
-      }
+      avanzar(roll);
 
       console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
       console.log("The category is " + currentCategory());
@@ -115,6 +109,14 @@ function Game () {
     
     function esImpar(roll) {
         return roll % 2 != 0;
+    }
+    
+    function avanzar(roll) {
+        places[currentPlayer] = places[currentPlayer] + roll;
+        
+        if(places[currentPlayer] > 11) {
+            places[currentPlayer] = places[currentPlayer] - 12;
+        }   
     }
 
   this.wasCorrectlyAnswered = function(){
