@@ -121,22 +121,12 @@ function Game () {
     }
 
     this.wasCorrectlyAnswered = function() {
-        if(inPenaltyBox[currentPlayer]){
-            if(isGettingOutOfPenaltyBox){
-                console.log('Answer was correct!!!!');
-                
-                ganarMoneda();
+        if(inPenaltyBox[currentPlayer] && !isGettingOutOfPenaltyBox){
 
-                var winner = didPlayerWin();
-                
-                siguienteTurno();
 
-                return winner;
-            }
-            else {
                 siguienteTurno();
                 return true;
-            }
+            
         }
         else {
             console.log("Answer was correct!!!!");
