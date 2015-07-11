@@ -79,33 +79,32 @@ function Game () {
       console.log(rockQuestions.shift());
   };
 
-  this.roll = function(roll){
-    console.log(players[currentPlayer] + " is the current player");
-    console.log("They have rolled a " + roll);
+    this.roll = function(roll) {
+        console.log(players[currentPlayer] + " is the current player");
+        console.log("They have rolled a " + roll);
 
-    if(inPenaltyBox[currentPlayer]){
-      if(esImpar(roll)){
-        isGettingOutOfPenaltyBox = true;
-
-        console.log(players[currentPlayer] + " is getting out of the penalty box");
-        avanzar(roll);
-
-        console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
-        console.log("The category is " + currentCategory());
-        askQuestion();
-      }else{
-        console.log(players[currentPlayer] + " is not getting out of the penalty box");
-        isGettingOutOfPenaltyBox = false;
-      }
-    }else{
-
-      avanzar(roll);
-
-      console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
-      console.log("The category is " + currentCategory());
-      askQuestion();
-    }
-  };
+        if (inPenaltyBox[currentPlayer]) {
+            if (esImpar(roll)) {
+                isGettingOutOfPenaltyBox = true;
+                console.log(players[currentPlayer] + " is getting out of the penalty box");
+                
+                avanzar(roll);
+                console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
+                console.log("The category is " + currentCategory());
+                askQuestion();
+            }
+            else {
+                console.log(players[currentPlayer] + " is not getting out of the penalty box");
+                isGettingOutOfPenaltyBox = false;
+            }
+        }
+        else {
+            avanzar(roll);
+            console.log(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
+            console.log("The category is " + currentCategory());
+            askQuestion();
+        }
+    };
     
     function esImpar(roll) {
         return roll % 2 != 0;
