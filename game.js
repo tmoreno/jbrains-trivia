@@ -3,7 +3,6 @@ var Jugador = require('./jugador');
 
 function Game () {
     var players          = new Array();
-    var inPenaltyBox     = new Array(6);
 
     var currentPlayerIndex    = 0;
     var isGettingOutOfPenaltyBox = false;
@@ -50,7 +49,6 @@ function Game () {
         
         players.push(jugador);
         
-        inPenaltyBox[this.howManyPlayers() - 1] = false;
 
         console.log(jugador.getNombre() + " was added");
         console.log("They are player number " + players.length);
@@ -76,7 +74,7 @@ function Game () {
         console.log(currentPlayer.getNombre() + " is the current player");
         console.log("They have rolled a " + roll);
 
-        if (inPenaltyBox[currentPlayerIndex]) {
+        if (currentPlayer.isInPenaltyBox()) {
             if (esImpar(roll)) {
                 isGettingOutOfPenaltyBox = true;
                 console.log(currentPlayer.getNombre() + " is getting out of the penalty box");
@@ -116,7 +114,9 @@ function Game () {
     }
 
     this.wasCorrectlyAnswered = function() {
-        if(inPenaltyBox[currentPlayerIndex] && !isGettingOutOfPenaltyBox){
+        var currentPlayer = players[currentPlayerIndex];
+            
+        if(currentPlayer.isInPenaltyBox() && !isGettingOutOfPenaltyBox){
             siguienteTurno();
             return true;
         }
@@ -139,7 +139,7 @@ function Game () {
         console.log('Question was incorrectly answered');
 		console.log(currentPlayer.getNombre() + " was sent to the penalty box");
         
-		inPenaltyBox[currentPlayerIndex] = true;
+        currentPlayer.setInPenaltyBox(true);
 
         siguienteTurno();
         
