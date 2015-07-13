@@ -7,6 +7,7 @@ rollRandom.initState();
 var answerRandom = randomSeed.create();
 answerRandom.initState();
 
+var tablero = ['Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock'];
 var questions = {
     Pop: {
         text: 'Pop Question',
@@ -26,7 +27,7 @@ var questions = {
     }
 };
 
-var game = new Game(questions);
+var game = new Game(tablero, questions);
 game.add('Chet');
 game.add('Pat');
 game.add('Sue');

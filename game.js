@@ -1,18 +1,15 @@
-var Tablero = require('./tablero');
 var Jugador = require('./jugador');
 
-function Game(questions) {
+function Game(tablero, questions) {
     var players = new Array();
     var currentPlayerIndex = 0;
     
     var isGettingOutOfPenaltyBox = false;
     
-    var tablero = new Tablero(['Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock', 'Pop', 'Science', 'Sports', 'Rock']);
-
     var currentCategory = function() {
         var currentPlayer = players[currentPlayerIndex];
         
-        return tablero.currentCategory(currentPlayer.getPlace());
+        return tablero[currentPlayer.getPlace()];
     };
     
     this.isPlayable = function(howManyPlayers) {
