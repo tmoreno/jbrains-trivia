@@ -32,6 +32,8 @@ function Jugador(nombre) {
     
     this.addPurse = function () {
         purses++;
+        
+        console.log(nombre + " now has " + purses + " Gold Coins.");
     }
     
     this.getPurses = function () {

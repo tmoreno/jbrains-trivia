@@ -74,7 +74,7 @@ function Game(tablero, questions) {
         else {
             console.log("Answer was correct!!!!");
 
-            ganarMoneda();
+            currentPlayer.addPurse();
 
             var winner = currentPlayer.didPlayerWin();
 
@@ -96,13 +96,6 @@ function Game(tablero, questions) {
         
 		return true;
     };
-    
-    function ganarMoneda() {
-        var currentPlayer = players[currentPlayerIndex];
-        
-        currentPlayer.addPurse();
-        console.log(currentPlayer.getNombre() + " now has " + currentPlayer.getPurses() + " Gold Coins.");
-    }
     
     function siguienteTurno() {
         currentPlayerIndex += 1;
