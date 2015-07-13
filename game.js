@@ -4,8 +4,6 @@ function Game(tablero, questions) {
     var players = new Array();
     var currentPlayerIndex = 0;
     
-    var isGettingOutOfPenaltyBox = false;
-    
     var currentCategory = function() {
         var currentPlayer = players[currentPlayerIndex];
         
@@ -39,7 +37,7 @@ function Game(tablero, questions) {
 
         if (currentPlayer.isInPenaltyBox()) {
             if (esImpar(roll)) {
-                isGettingOutOfPenaltyBox = true;
+                currentPlayer.setGettingOutOfPenaltyBox(true);
                 console.log(currentPlayer.getNombre() + " is getting out of the penalty box");
                 
                 currentPlayer.avanzar(roll);
@@ -49,7 +47,7 @@ function Game(tablero, questions) {
             }
             else {
                 console.log(currentPlayer.getNombre() + " is not getting out of the penalty box");
-                isGettingOutOfPenaltyBox = false;
+                currentPlayer.setGettingOutOfPenaltyBox(false);
             }
         }
         else {
@@ -67,7 +65,7 @@ function Game(tablero, questions) {
     this.wasCorrectlyAnswered = function() {
         var currentPlayer = players[currentPlayerIndex];
             
-        if(currentPlayer.isInPenaltyBox() && !isGettingOutOfPenaltyBox){
+        if(currentPlayer.isInPenaltyBox() && !currentPlayer.isGettingOutOfPenaltyBox()){
             siguienteTurno();
             return true;
         }

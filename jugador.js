@@ -3,6 +3,7 @@ function Jugador(nombre) {
     var place = 0;
     var purses = 0;
     var inPenaltyBox = false;
+    var gettingOutOfPenaltyBox = false;
     
     this.didPlayerWin = function() {
         return purses !== 6;
@@ -46,6 +47,14 @@ function Jugador(nombre) {
     
     this.isInPenaltyBox = function () {
         return inPenaltyBox;
+    }
+    
+    this.setGettingOutOfPenaltyBox = function (value) {
+        gettingOutOfPenaltyBox = value;
+    }
+    
+    this.isGettingOutOfPenaltyBox = function () {
+        return gettingOutOfPenaltyBox;
     }
 }
 
