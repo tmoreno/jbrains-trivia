@@ -12,10 +12,6 @@ function Game(tablero, questions) {
         return tablero[currentPlayer.getPlace()];
     };
     
-    this.isPlayable = function(howManyPlayers) {
-        return howManyPlayers >= 2;
-    };
-
     this.add = function(playerName) {
         var jugador = new Jugador(playerName);
         
@@ -25,10 +21,6 @@ function Game(tablero, questions) {
         console.log("They are player number " + players.length);
 
         return true;
-    };
-
-    this.howManyPlayers = function() {
-        return players.length;
     };
 
     var askQuestion = function() {
