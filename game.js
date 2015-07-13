@@ -1,7 +1,7 @@
 var Tablero = require('./tablero');
 var Jugador = require('./jugador');
 
-function Game() {
+function Game(questions) {
     var players = new Array();
     var currentPlayerIndex = 0;
     
@@ -15,25 +15,6 @@ function Game() {
         return tablero.currentCategory(currentPlayer.getPlace());
     };
     
-    questions = {
-        Pop: {
-            text: 'Pop Question',
-            number: 50
-        },
-        Science: {
-            text: 'Science Question',
-            number: 50
-        },
-        Sports: {
-            text: 'Sports Question',
-            number: 50
-        },
-        Rock: {
-            text: 'Rock Question',
-            number: 50
-        }
-    };
-
     this.isPlayable = function(howManyPlayers) {
         return howManyPlayers >= 2;
     };

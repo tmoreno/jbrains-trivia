@@ -7,7 +7,26 @@ rollRandom.initState();
 var answerRandom = randomSeed.create();
 answerRandom.initState();
 
-var game = new Game();
+var questions = {
+    Pop: {
+        text: 'Pop Question',
+        number: 50
+    },
+    Science: {
+        text: 'Science Question',
+        number: 50
+    },
+    Sports: {
+        text: 'Sports Question',
+        number: 50
+    },
+    Rock: {
+        text: 'Rock Question',
+        number: 50
+    }
+};
+
+var game = new Game(questions);
 game.add('Chet');
 game.add('Pat');
 game.add('Sue');
