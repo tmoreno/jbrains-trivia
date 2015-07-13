@@ -42,7 +42,7 @@ function Game(tablero, questions) {
                 isGettingOutOfPenaltyBox = true;
                 console.log(currentPlayer.getNombre() + " is getting out of the penalty box");
                 
-                avanzar(roll);
+                currentPlayer.avanzar(roll);
                 
                 console.log("The category is " + currentCategory());
                 askQuestion();
@@ -53,7 +53,7 @@ function Game(tablero, questions) {
             }
         }
         else {
-            avanzar(roll);
+            currentPlayer.avanzar(roll);
 
             console.log("The category is " + currentCategory());
             askQuestion();
@@ -62,18 +62,6 @@ function Game(tablero, questions) {
     
     function esImpar(roll) {
         return roll % 2 != 0;
-    }
-    
-    function avanzar(roll) {
-        var currentPlayer = players[currentPlayerIndex];
-        
-        currentPlayer.setPlace(currentPlayer.getPlace() + roll);
-        
-        if(currentPlayer.getPlace() > 11) {
-            currentPlayer.setPlace(currentPlayer.getPlace() - 12);
-        }
-        
-        console.log(currentPlayer.getNombre() + "'s new location is " + currentPlayer.getPlace());
     }
 
     this.wasCorrectlyAnswered = function() {

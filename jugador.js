@@ -8,6 +8,16 @@ function Jugador(nombre) {
         return purses !== 6;
     };
     
+    this.avanzar = function(roll) {
+        place += roll;
+        
+        if(place > 11) {
+            place = place - 12;
+        }
+        
+        console.log(nombre + "'s new location is " + place);
+    }
+    
     this.getNombre = function () {
         return nombre;
     }
